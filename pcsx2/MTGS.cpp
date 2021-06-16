@@ -596,12 +596,12 @@ void SysMtgsThread::CloseGS()
 		return;
 	m_Opened = false;
 	Suspend();
+	sApp.CloseGsPanel();
 }
 
 void SysMtgsThread::OnSuspendInThread()
 {
 	GSclose();
-	sApp.CloseGsPanel();
 	GetSysExecutorThread().PostEvent(new SysExecEvent_InvokeMtgsThreadMethod(&SysMtgsThread::CloseGS));
 	_parent::OnSuspendInThread();
 }
