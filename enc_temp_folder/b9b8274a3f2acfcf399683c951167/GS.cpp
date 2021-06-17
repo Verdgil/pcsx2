@@ -86,8 +86,8 @@ int GSinit()
 	// can crash if the CPU does not support the instruction set.
 	// Initialise it here instead - it's not ideal since we have to strip the
 	// const type qualifier from all the affected variables.
-	theApp.SetConfigDir();
 	theApp.Init();
+	theApp.SetConfigDir();
 
 
 	GSUtil::Init();
@@ -702,12 +702,12 @@ int GSfreeze(int mode, freezeData* data)
 void GSconfigure()
 {
 	ScopedCoreThreadPause paused_core;
+	theApp.SetConfigDir();
 	try
 	{
 		if (!GSUtil::CheckSSE())
 			return;
 
-		theApp.SetConfigDir();
 		theApp.Init();
 
 #ifdef _WIN32
